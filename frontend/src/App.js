@@ -1,19 +1,33 @@
 import "./App.css";
-import axios from "axios";
+import { useState } from "react";
+import WalletInputs from "./components/WalletInputs";
+import NativeTokens from "./components/NativeTokens";
 
 function App() {
 
-  async function backendCall() {
-    const response = await axios.get("http://localhost:8080/");
-    console.log(response.data);
-  }
+	const [wallet, setWallet] = useState("");
+	const [chain, setChain] = useState("0x1");
+	const [nativeBalance, setNativeBalance] = useState(0);
+	const [nativeValue, setNativeValue] = useState(0);
 
-
-  return (
-    <div className="App">
-      <button onClick={backendCall}>Fetch Hello</button>
-    </div>
-  );
+	return (
+		<div className="App">
+			<WalletInputs 
+				chain={chain}
+				setChain={setChain}
+				wallet={wallet}
+				setWallet={setWallet}
+			/>
+			<NativeTokens
+				wallet={wallet}
+				chain={chain}
+				nativeBalance={nativeBalance}
+				setNativeBalance={setNativeBalance}
+				nativeValue={nativeValue}
+				setNativeValue={setNativeValue}
+			/>
+		</div>
+	);
 }
 
 export default App;
