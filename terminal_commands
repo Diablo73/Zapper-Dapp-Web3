@@ -1,1 +1,4 @@
 npm i moralis express cors dotenv nodemon
+npm cache clean --force
+npx create-react-app frontend
+mpn i axios
