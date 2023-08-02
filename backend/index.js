@@ -6,10 +6,14 @@ const port = 8080
 require("dotenv").config();
 
 app.use(cors())
-Moralis.start({ "apiKey": process.env.MORALIS_API_KEY });
+Moralis.start({ "apiKey": getAPIKey() });
 
 app.get("/", (req, res) => {
 	res.send("Hello World!")
+});
+
+app.get("/test", (req, res) => {
+	res.send("Hello World! : ")
 });
 
 app.listen(port, () => {
@@ -25,7 +29,6 @@ app.get("/nativeBalance", async (req, res) => {
 			"address": address,
 			"chain": chain
 		});
-
 		console.log(response_getNativeBalance);
 
 		const balance = response_getNativeBalance.raw;
@@ -59,3 +62,45 @@ app.get("/nativeBalance", async (req, res) => {
 		res.send(e);
 	}
 });
+
+app.get("/tokenBalances", async (req, res) => {
+
+	try {
+		const { address, chain } = req.query;
+
+		const response_getWalletTokenBalances = await Moralis.EvmApi.token.getWalletTokenBalances({
+			"address": address,
+			"chain": chain
+		});
+		console.log(response_getWalletTokenBalances);
+
+		let tokens = response_getWalletTokenBalances.raw;
+		let legitTokens = [];
+		for (let i = 0; i < tokens.length; i++) {
+			try {
+				const response_getTokenPrice = await Moralis.EvmApi.token.getTokenPrice({
+					address: tokens[i].token_address,
+					chain: chain,
+				});
+				console.log(response_getTokenPrice);
+				if (response_getTokenPrice.raw.usdPrice > 0.01) {
+					tokens[i].usd = response_getTokenPrice.raw.usdPrice;
+					legitTokens.push(tokens[i]);
+				} else {
+					console.log("Shit Coin");
+				}
+			} catch (e) {
+				console.log(e);
+			}
+		}
+		res.send(legitTokens);
+	} catch (e) {
+		res.send(e);
+	}
+});
+
+
+function getAPIKey() {
+	const listOfAPIKeys = process.env.MORALIS_API_KEY.split(",");
+	return listOfAPIKeys[Math.floor(new Date().getHours() / 6)]
+}
