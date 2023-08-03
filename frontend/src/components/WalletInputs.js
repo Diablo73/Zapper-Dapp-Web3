@@ -18,6 +18,7 @@ function WalletInputs({chain, wallet, setChain, setWallet}) {
 				<option value="0xaa36a7">Sepolia</option>
 				<option value="0x5">Goerli</option>
 				<option value="0xfa">Fantom</option>
+				<option value="0x19">Cronos</option>
 			</select>
 		</>
 	);

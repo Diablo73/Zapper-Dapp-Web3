@@ -145,6 +145,27 @@ app.get("/tokenTransfers", async (req, res) => {
 	}
 });
 
+
+app.get("/nftBalance", async (req, res) => {
+  
+	try {
+		const { address, chain } = req.query;
+
+		const response_getWalletNFTs = await Moralis.EvmApi.nft.getWalletNFTs({
+			address: address,
+			chain: chain,
+		});
+		console.log(response_getWalletNFTs);
+		const userNFTs = response_getWalletNFTs.raw;
+
+		res.send(userNFTs);
+	} catch (e) {
+		console.log(e);
+		res.send(e);
+	}
+});  
+
+
 function getAPIKey() {
 	const listOfAPIKeys = process.env.MORALIS_API_KEY.split(",");
 	return listOfAPIKeys[Math.floor(new Date().getHours() / 6)]
