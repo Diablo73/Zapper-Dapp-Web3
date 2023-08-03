@@ -3,6 +3,7 @@ import { useState } from "react";
 import WalletInputs from "./components/WalletInputs";
 import NativeTokens from "./components/NativeTokens";
 import Tokens from "./components/Tokens";
+import PortfolioValue from "./components/PortfolioValue";
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<WalletInputs 
+			<WalletInputs
 				chain={chain}
 				setChain={setChain}
 				wallet={wallet}
@@ -29,11 +30,15 @@ function App() {
 				nativeValue={nativeValue}
 				setNativeValue={setNativeValue}
 			/>
-			<Tokens 
+			<Tokens
 				wallet={wallet}
 				chain={chain}
 				tokens={tokens}
 				setTokens={setTokens}
+			/>
+			<PortfolioValue
+				nativeValue={nativeValue}
+				tokens={tokens}
 			/>
 		</div>
 	);
