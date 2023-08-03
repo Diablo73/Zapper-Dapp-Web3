@@ -13,12 +13,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test", (req, res) => {
-	res.send("Hello World! : ")
+	res.send("Hello World! : " + getAPIKey())
 });
 
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`)
 });
+
 
 app.get("/nativeBalance", async (req, res) => {
 
@@ -59,9 +60,11 @@ app.get("/nativeBalance", async (req, res) => {
 
 		res.send(balance);
 	} catch (e) {
+		console.log(e);
 		res.send(e);
 	}
 });
+
 
 app.get("/tokenBalances", async (req, res) => {
 
@@ -95,10 +98,52 @@ app.get("/tokenBalances", async (req, res) => {
 		}
 		res.send(legitTokens);
 	} catch (e) {
+		console.log(e);
 		res.send(e);
 	}
 });
 
+
+app.get("/tokenTransfers", async (req, res) => {
+
+	try {
+		const { address, chain } = req.query;
+
+		const response_getWalletTokenTransfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
+			"address": address,
+			"chain": chain
+		});
+		console.log(response_getWalletTokenTransfers);
+
+		const userTrans = response_getWalletTokenTransfers.raw.result;
+
+		let userTransDetails = [];
+    
+		for (let i = 0; i < userTrans.length; i++) {
+			try {
+				const response_getTokenMetadata = await Moralis.EvmApi.token.getTokenMetadata({
+					addresses: [userTrans[i].address],
+					chain: chain,
+				});
+				console.log(response_getTokenMetadata);
+				if (response_getTokenMetadata.raw) {
+					userTrans[i].decimals = response_getTokenMetadata.raw[0].decimals;
+					userTrans[i].symbol = response_getTokenMetadata.raw[0].symbol;
+					userTransDetails.push(userTrans[i]);
+				} else {
+					console.log("No details for coin");
+				}
+			} catch (e) {
+				console.log(e);
+			}
+		}
+
+		res.send(userTransDetails);
+	} catch (e) {
+		console.log(e);
+		res.send(e);
+	}
+});
 
 function getAPIKey() {
 	const listOfAPIKeys = process.env.MORALIS_API_KEY.split(",");
