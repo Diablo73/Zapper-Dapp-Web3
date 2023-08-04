@@ -4,7 +4,7 @@ import axios from "axios";
 function Tokens({wallet, chain, tokens, setTokens}) {
 	
 	async function getTokenBalances() {
-		const response = await axios.get("http://localhost:8080/tokenBalances", {
+		const response = await axios.get(process.env.BACKEND_API_URL + "/tokenBalances", {
 			params: {
 				address: wallet,
 				chain: chain,
