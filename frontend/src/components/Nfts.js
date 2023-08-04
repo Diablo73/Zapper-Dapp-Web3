@@ -7,7 +7,7 @@ function Nfts({chain, wallet, filteredNfts, setFilteredNfts, nfts, setNfts}) {
 	const [idFilter, setIdFilter] = useState("");
 
 	async function getUserNfts() {
-		const response = await axios.get(process.env.BACKEND_API_URL + "/nftBalance", {
+		const response = await axios.get(window.location.origin + "/api/nftBalance", {
 			params: {
 				address: wallet,
 				chain: chain,

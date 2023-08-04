@@ -4,7 +4,7 @@ import axios from "axios";
 function NativeTokens({ wallet, chain, nativeBalance, setNativeBalance, nativeValue, setNativeValue  }) {
 
     async function getNativeBalance() {
-		const response = await axios.get(process.env.BACKEND_API_URL + "/nativeBalance", {
+		const response = await axios.get(window.location.origin + "/api/nativeBalance", {
 			params: {
 				address: wallet,
 				chain: chain,

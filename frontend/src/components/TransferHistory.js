@@ -4,7 +4,7 @@ import axios from "axios";
 function TransferHistory({ chain, wallet, transfers, setTransfers }) {
 
 	async function getTokenTransfers() {
-		const response = await axios.get(process.env.BACKEND_API_URL + "/tokenTransfers", {
+		const response = await axios.get(window.location.origin + "/api/tokenTransfers", {
 			params: {
 				address: wallet,
 				chain: chain,
