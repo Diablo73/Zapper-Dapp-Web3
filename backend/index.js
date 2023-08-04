@@ -2,6 +2,8 @@ const Moralis = require("moralis").default;
 const express = require("express")
 const cors = require("cors")
 const app = express()
+const fs = require("fs");
+const csvParser = require("csv-parser");
 const port = 8080
 require("dotenv").config();
 
@@ -21,12 +23,29 @@ app.listen(port, () => {
 });
 
 
-app.get("/getAvailableChains", async (req, res) => {
+app.get("/api/getAvailableChains", async (req, res) => {
 
-	const response = await fetch("/resources/available_chains.csv");
-    // const textData = await response.text();
+	let csvData;
+	try {
+		csvData = fs.readFileSync("./resources/available_chains.csv").toString().split("\n");
+	} catch (e) {
+		console.log(e);
+	}
+	console.log(csvData);
 
-	res.send("Hello World! : " + response)
+	let availableChains = [];
+
+	for (let i = 0; i < csvData.length; i++) {
+		const chain = csvData[i].trim().split(",");
+		let chainMap = {};
+		chainMap.id = chain[0];
+		chainMap.label = chain[1];
+		chainMap.value = chain[2];
+		chainMap.prefix = chain[3];
+		availableChains.push(chainMap);
+	}
+
+	res.send(availableChains);
 });
 
 
