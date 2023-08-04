@@ -21,6 +21,15 @@ app.listen(port, () => {
 });
 
 
+app.get("/getAvailableChains", async (req, res) => {
+
+	const response = await fetch("/resources/available_chains.csv");
+    // const textData = await response.text();
+
+	res.send("Hello World! : " + response)
+});
+
+
 app.get("/api/nativeBalance", async (req, res) => {
 
 	try {
