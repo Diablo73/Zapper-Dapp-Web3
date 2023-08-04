@@ -21,7 +21,7 @@ app.listen(port, () => {
 });
 
 
-app.get("/nativeBalance", async (req, res) => {
+app.get("/api/nativeBalance", async (req, res) => {
 
 	try {
 		const { address, chain } = req.query;
@@ -66,7 +66,7 @@ app.get("/nativeBalance", async (req, res) => {
 });
 
 
-app.get("/tokenBalances", async (req, res) => {
+app.get("/api/tokenBalances", async (req, res) => {
 
 	try {
 		const { address, chain } = req.query;
@@ -104,7 +104,7 @@ app.get("/tokenBalances", async (req, res) => {
 });
 
 
-app.get("/tokenTransfers", async (req, res) => {
+app.get("/api/tokenTransfers", async (req, res) => {
 
 	try {
 		const { address, chain } = req.query;
@@ -146,7 +146,7 @@ app.get("/tokenTransfers", async (req, res) => {
 });
 
 
-app.get("/nftBalance", async (req, res) => {
+app.get("/api/nftBalance", async (req, res) => {
   
 	try {
 		const { address, chain } = req.query;
