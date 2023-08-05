@@ -4,4 +4,5 @@ npx create-react-app frontend
 mpn i axios
 npm install http-proxy-middleware --save
 npm install csv-parser
-mpn i axiosnpm install @web3uikit/core @web3uikit/web3 @web3uikit/icons
+npm install @web3uikit/core @web3uikit/web3 @web3uikit/icons
+npm install console-browserify

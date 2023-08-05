@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+var console = require("console-browserify")
 
 function NativeTokens({ wallet, chain, nativeBalance, setNativeBalance, nativeValue, setNativeValue  }) {
 

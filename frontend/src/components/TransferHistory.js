@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+var console = require("console-browserify")
 
 function TransferHistory({ chain, wallet, transfers, setTransfers }) {
 
