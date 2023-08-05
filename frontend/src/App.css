@@ -28,3 +28,19 @@
 	align-items: center;
 	gap: 25px;
 }
+
+.content {
+  height: 100%;
+  margin: 0;
+  padding: 100px;
+  background: linear-gradient(180deg, rgba(142, 211, 182, 0.3) 0%, rgba(36,20,0,0) 50%);
+}
+
+.tabHeading {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px 0px;
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}

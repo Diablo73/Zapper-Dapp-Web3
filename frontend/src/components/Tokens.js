@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Table } from "@web3uikit/core";
+import { Reload } from "@web3uikit/icons";
 
 function Tokens({wallet, chain, tokens, setTokens}) {
 	
@@ -26,22 +28,21 @@ function Tokens({wallet, chain, tokens, setTokens}) {
 
 	return (
 		<>
-			<p>
-				<button onClick={getTokenBalances}>Get Tokens</button>
-				<br/>
-				{tokens.length > 0 &&
-					tokens.map((e) => {
-						return (
-							<>
-								<span>
-									{e.symbol} {e.bal}, (${e.val})
-								</span>
-								<br/>
-							</>
-						);
-					})
-				}
-			</p>
+			<div className="tabHeading">ERC20 Tokens <Reload onClick={getTokenBalances}/></div>
+			{tokens.length > 0 && (
+				<Table
+					pageSize={6}
+					noPagination={true}
+					style={{ width: "900px" }}
+					columnsConfig="300px 300px 250px"
+					data={tokens.map((e) => [e.symbol, e.bal, `$${e.val}`] )}
+					header={[
+						<span>Currency</span>,
+						<span>Balance</span>,
+						<span>Value</span>,
+					]}
+				/>
+			)}
 		</>
 	);
 }
