@@ -6,6 +6,7 @@ import Tokens from "./components/Tokens";
 import PortfolioValue from "./components/PortfolioValue";
 import TransferHistory from "./components/TransferHistory";
 import Nfts from "./components/Nfts";
+import { Avatar, TabList, Tab } from "@web3uikit/core";
 
 function App() {
 
@@ -27,38 +28,48 @@ function App() {
 				wallet={wallet}
 				setWallet={setWallet}
 			/>
-			<NativeTokens
-				wallet={wallet}
-				chain={chain}
-				nativeBalance={nativeBalance}
-				setNativeBalance={setNativeBalance}
-				nativeValue={nativeValue}
-				setNativeValue={setNativeValue}
-			/>
-			<Tokens
-				wallet={wallet}
-				chain={chain}
-				tokens={tokens}
-				setTokens={setTokens}
-			/>
-			<PortfolioValue
-				nativeValue={nativeValue}
-				tokens={tokens}
-			/>
-			<TransferHistory 
-				chain={chain} 
-				wallet={wallet}
-				transfers={transfers}
-				setTransfers={setTransfers}
-			/>
-			<Nfts 
-				wallet={wallet} 
-				chain={chain}
-				nfts={nfts}
-				setNfts={setNfts}
-				filteredNfts={filteredNfts}
-				setFilteredNfts={setFilteredNfts}
-			/>
+			<div className="content">
+				<PortfolioValue
+					nativeValue={nativeValue}
+					tokens={tokens}
+				/>
+				<TabList>
+					<Tab tabKey={1} tabName={"Tokens"}>
+						<NativeTokens
+							wallet={wallet}
+							chain={chain}
+							nativeBalance={nativeBalance}
+							setNativeBalance={setNativeBalance}
+							nativeValue={nativeValue}
+							setNativeValue={setNativeValue}
+						/>
+						<Tokens
+							wallet={wallet}
+							chain={chain}
+							tokens={tokens}
+							setTokens={setTokens}
+						/>	
+					</Tab>
+					<Tab tabKey={2} tabName={"Transfers"}>
+						<TransferHistory 
+							chain={chain} 
+							wallet={wallet}
+							transfers={transfers}
+							setTransfers={setTransfers}
+						/>
+					</Tab>
+					<Tab tabKey={3} tabName={"NFT's"}>
+						<Nfts 
+							wallet={wallet} 
+							chain={chain}
+							nfts={nfts}
+							setNfts={setNfts}
+							filteredNfts={filteredNfts}
+							setFilteredNfts={setFilteredNfts}
+						/>
+					</Tab>
+				</TabList>	
+			</div>
 		</div>
 	);
 }
