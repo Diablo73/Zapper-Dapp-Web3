@@ -5,6 +5,9 @@ import {Input, Select, CryptoLogos, Avatar} from "@web3uikit/core"
 function WalletInputs({chain, wallet, setChain, setWallet}) {
 
 	function getChains() {
+		if (wallet == "") {
+			setWallet("0x165CD37b4C644C2921454429E7F9358d18A45e14");
+		}
 		return [{
 			id: "eth",
 			label: "Ethereum",
@@ -70,6 +73,8 @@ function WalletInputs({chain, wallet, setChain, setWallet}) {
 						labelBgColor="rgb(33, 33, 38)"
 						value={wallet}
 						style={{height: "50px"}}
+						width="480px"
+						autoFocus="true"
 						onChange={(e) => setWallet(e.target.value)}
 					/>
 					<Select

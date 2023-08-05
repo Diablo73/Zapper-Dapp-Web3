@@ -10,7 +10,7 @@
 	justify-content: flex-start;
 	background-color: rgb(33, 33, 38);
 	border-bottom: 1px solid rgb(121, 121, 121);
-	padding: 5px 50px;
+	padding: 5px 32px;
 	align-items: center;
 }
 
@@ -32,7 +32,7 @@
 .content {
   height: 100%;
   margin: 0;
-  padding: 100px;
+  padding: 10px 100px;
   background: linear-gradient(180deg, rgba(142, 211, 182, 0.3) 0%, rgba(36,20,0,0) 50%);
 }
 
