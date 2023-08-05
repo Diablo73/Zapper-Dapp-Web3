@@ -109,6 +109,9 @@ app.get("/api/tokenBalances", async (req, res) => {
 		let legitTokens = [];
 		for (let i = 0; i < tokens.length; i++) {
 			try {
+				if (isMoralisAPILimitReached(i)) {
+					break;
+				}
 				const response_getTokenPrice = await Moralis.EvmApi.token.getTokenPrice({
 					address: tokens[i].token_address,
 					chain: chain,
@@ -149,6 +152,9 @@ app.get("/api/tokenTransfers", async (req, res) => {
     
 		for (let i = 0; i < userTrans.length; i++) {
 			try {
+				if (isMoralisAPILimitReached(i)) {
+					break;
+				}
 				const response_getTokenMetadata = await Moralis.EvmApi.token.getTokenMetadata({
 					addresses: [userTrans[i].address],
 					chain: chain,
@@ -197,4 +203,8 @@ app.get("/api/nftBalance", async (req, res) => {
 function getAPIKey() {
 	const listOfAPIKeys = process.env.MORALIS_API_KEY.split(",");
 	return listOfAPIKeys[Math.floor(new Date().getHours() / 6)]
+}
+
+function isMoralisAPILimitReached(i) {
+	return i >= process.env.MORALIS_API_CALL_LIMIT;
 }
