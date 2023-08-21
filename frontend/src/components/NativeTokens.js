@@ -7,7 +7,7 @@ var console = require("console-browserify");
 function NativeTokens({ wallet, chain, nativeBalance, setNativeBalance, nativeValue, setNativeValue  }) {
 
     async function getNativeBalance() {
-		const response = await axios.get(window.location.origin + "/api/nativeBalance", {
+		const response = await axios.get(window.location.origin + "/api/v2/nativeBalance", {
 			params: {
 				address: wallet,
 				chain: chain,

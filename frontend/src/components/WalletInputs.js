@@ -5,24 +5,30 @@ import {Input, Select, CryptoLogos, Avatar} from "@web3uikit/core"
 function WalletInputs({chain, wallet, setChain, setWallet}) {
 
 	function getChains() {
-		if (wallet == "") {
+		if (wallet === "") {
 			setWallet("0x165CD37b4C644C2921454429E7F9358d18A45e14");
 		}
 		return [{
 			id: "eth",
-			label: "Ethereum",
+			label: "Ethereum Mainnet",
 			value: "0x1",
 			prefix: <CryptoLogos chain="ethereum"/>
 		},
 		{
-			id: "matic",
-			label: "Polygon",
-			value: "0x89",
-			prefix: <CryptoLogos chain="polygon"/>
+			id: "harTN",
+			label: "Harmony TestNet",
+			value: "0x1666700000",
+			prefix: <CryptoLogos chain="harmony"/>
+		},
+		{
+			id: "eth",
+			label: "Cronos TestNet",
+			value: "0x19",
+			prefix: <CryptoLogos chain="cronos"/>
 		},
 		{
 			id: "sep",
-			label: "Sepolia",
+			label: "Sepolia TestNet",
 			value: "0xaa36a7",
 			prefix: <Avatar
 				avatarBackground="#eeaaee"
@@ -33,7 +39,7 @@ function WalletInputs({chain, wallet, setChain, setWallet}) {
 		},
 		{
 			id: "eth",
-			label: "Goerli",
+			label: "Goerli Testnet",
 			value: "0x5",
 			prefix: <Avatar
 				avatarBackground="#2288dd"
@@ -44,16 +50,16 @@ function WalletInputs({chain, wallet, setChain, setWallet}) {
 		},
 		{
 			id: "eth",
-			label: "Fantom",
-			value: "0xfa",
+			label: "Fantom TestNet",
+			value: "0xfa2",
 			prefix: <CryptoLogos chain="fantom"/>
 		},
 		{
-			id: "eth",
-			label: "Cronos",
-			value: "0x19",
-			prefix: <CryptoLogos chain="cronos"/>
-		}
+			id: "matic",
+			label: "Polygon Mumbai Testnet",
+			value: "0x13881",
+			prefix: <CryptoLogos chain="polygon"/>
+		},
 	];
 	}
 
@@ -84,6 +90,7 @@ function WalletInputs({chain, wallet, setChain, setWallet}) {
 						options={
 							getChains()
 						}
+						width="25%"
 					/>
 				</div>
 			</div>

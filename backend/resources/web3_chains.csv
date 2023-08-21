@@ -1,0 +1,7 @@
+Ethereum Mainnet,0x1,80,https://eth.drpc.org/,https://etherscan.io
+Harmony Testnet,0x1666700000,48567,https://api.s0.b.hmny.io,https://explorer.pops.one/
+Cronos Testnet,0x19,33819,https://evm-t3.cronos.org/,https://cronos.org/explorer/testnet3
+Sepolia Testnet,0xaa36a7,77733,https://rpc.sepolia.org,https://sepolia.etherscan.io/
+Goerli Testnet,0x5,77733,https://rpc.ankr.com/eth_goerli,https://goerli.etherscan.io/
+Fantom Testnet,0xfa2,33644,https://rpc.testnet.fantom.network/,https://testnet.ftmscan.com/
+Polygon Mumbai Testnet,0x13881,33536,https://rpc-mumbai.maticvigil.com/,https://mumbai.polygonscan.com/

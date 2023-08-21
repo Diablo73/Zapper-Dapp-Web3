@@ -32,6 +32,7 @@ function App() {
 				<PortfolioValue
 					nativeValue={nativeValue}
 					tokens={tokens}
+					chain={chain}
 				/>
 				<TabList>
 					<Tab tabKey={1} tabName={"Tokens"}>
@@ -43,12 +44,14 @@ function App() {
 							nativeValue={nativeValue}
 							setNativeValue={setNativeValue}
 						/>
-						<Tokens
-							wallet={wallet}
-							chain={chain}
-							tokens={tokens}
-							setTokens={setTokens}
-						/>	
+						{ chain === "0x1" && (
+							<Tokens
+								wallet={wallet}
+								chain={chain}
+								tokens={tokens}
+								setTokens={setTokens}
+							/>
+						)}
 					</Tab>
 					<Tab tabKey={2} tabName={"Transfers"}>
 						<TransferHistory 

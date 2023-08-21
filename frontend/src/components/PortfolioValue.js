@@ -1,17 +1,19 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-function PortfolioValue({ tokens, nativeValue }) {
+function PortfolioValue({ tokens, nativeValue, chain }) {
 	const [totalValue, setTotalValue] = useState(0);
 
 	useEffect(() => {
 		let val = Number(nativeValue);
-		for (let i = 0; i < tokens.length; i++) {
-			val = val + Number(tokens[i].val);
+		if (chain === "0x1") {
+			for (let i = 0; i < tokens.length; i++) {
+				val = val + Number(tokens[i].val);
+			}
 		}
 
 		setTotalValue(val.toFixed(2));
-	}, [nativeValue, tokens]);
+	}, [nativeValue, tokens, chain]);
 
 	return (
 		<>
